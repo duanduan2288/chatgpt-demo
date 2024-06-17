@@ -2,6 +2,7 @@ import { Index, Show, createEffect, createSignal, onCleanup, onMount } from 'sol
 import { useThrottleFn } from 'solidjs-use'
 import { generateSignature } from '@/utils/auth'
 import IconClear from './icons/Clear'
+import IconSend from './icons/Send'
 import MessageItem from './MessageItem'
 import SystemRoleSettings from './SystemRoleSettings'
 import ErrorMessageItem from './ErrorMessageItem'
@@ -233,8 +234,8 @@ export default () => {
         when={!loading()}
         fallback={() => (
           <div class="gen-cb-wrapper">
-            <span>AI is thinking...</span>
-            <div class="gen-cb-stop" onClick={stopStreamFetch}>Stop</div>
+            <span>正在思考中...</span>
+            <div class="gen-cb-stop" onClick={stopStreamFetch}>停止输出</div>
           </div>
         )}
       >
@@ -254,7 +255,7 @@ export default () => {
             class="gen-textarea"
           />
           <button onClick={handleButtonClick} disabled={systemRoleEditing()} gen-slate-btn>
-            Send
+            <IconSend />
           </button>
           <button title="Clear" onClick={clear} disabled={systemRoleEditing()} gen-slate-btn>
             <IconClear />

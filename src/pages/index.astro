@@ -6,10 +6,14 @@ import Generator from '../components/Generator'
 import '../message.css'
 import 'katex/dist/katex.min.css'
 import 'highlight.js/styles/atom-one-dark.css'
+const user = Astro.locals.user
+if (!user)
+  return Astro.redirect('/login');
+
 ---
 
-<Layout title="ChatGPT API Demo">
-  <main >
+<Layout title="情感小助手">
+  <main>
     <Header />
     <Generator client:load />
     <Footer />
@@ -29,8 +33,7 @@ async function checkCurrentAuth() {
     }),
   })
   const responseJson = await response.json()
-  if (responseJson.code !== 0)
-    window.location.href = '/password'
+  if (responseJson.code !== 0) window.location.href = '/password'
 }
 checkCurrentAuth()
 </script>

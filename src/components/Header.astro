@@ -1,7 +1,7 @@
 ---
-import { model } from '../utils/openAI'
-import Logo from './Logo.astro'
-import Themetoggle from './Themetoggle.astro'
+import { model } from "../utils/openAI";
+import Logo from "./Logo.astro";
+import Themetoggle from "./Themetoggle.astro";
 ---
 
 <header>
@@ -10,8 +10,10 @@ import Themetoggle from './Themetoggle.astro'
     <Themetoggle />
   </div>
   <div class="fi mt-2">
-    <span class="gpt-title">ChatGPT</span>
-    <span class="gpt-subtitle">Demo</span>
+    <span class="gpt-title">情感支持</span>
+    <span class="gpt-subtitle">小助手</span>
   </div>
-  <p mt-1 op-60>Based on OpenAI API ({model}).</p>
+  <p mt-1 op-60>
+    Hi，我是你的情感支持小助手，随时为你提供情感支持！ ({model}).
+  </p>
 </header>

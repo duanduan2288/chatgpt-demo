@@ -20,14 +20,13 @@ const envAdapter = () => {
 export default defineConfig({
   integrations: [
     unocss(),
-    solidJs(),
-    AstroPWA({
+    solidJs(), AstroPWA({
       registerType: 'autoUpdate',
       injectRegister: 'inline',
       manifest: {
-        name: 'ChatGPT-API Demo',
-        short_name: 'ChatGPT Demo',
-        description: 'A demo repo based on OpenAI API',
+        name: '情感小助手',
+        short_name: '情感小助手',
+        description: 'Hi,我是你的情感小助手，随时为你提供情感支持！',
         theme_color: '#212129',
         background_color: '#ffffff',
         icons: [
@@ -65,5 +64,8 @@ export default defineConfig({
       process.env.OUTPUT === 'vercel' && disableBlocks(),
       process.env.OUTPUT === 'netlify' && disableBlocks(),
     ],
+    optimizeDeps: {
+      exclude: ['oslo'],
+    },
   },
 })
