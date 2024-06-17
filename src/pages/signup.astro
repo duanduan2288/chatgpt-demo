@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Password Protection">
+  <main class="h-screen col-fcc">
+    <div class="op-30">注册</div>
+    <form method="post" action="/api/signup">
+      <div id="input_container" class="mt-4">
+        <div class="mt-2">
+          <input
+            id="username_input"
+            placeholder="请输入用户名"
+            type="text"
+            name="username"
+            class="gpt-password-input"
+          />
+        </div>
+        <div class="mt-2">
+          <input
+            id="password_input"
+            placeholder="请输入密码"
+            type="password"
+            name="password"
+            class="gpt-password-input"
+          />
+        </div>
+        <div class="mt-2">
+          <input
+            id="repassword_input"
+            placeholder="请再次输入密码"
+            type="password"
+            name="repassword"
+            class="gpt-password-input"
+          />
+        </div>
+        <div id="submit" class="mt-2">
+          <button type="submit" class="gpt-password-btn">注册</button>
+        </div>
+      </div>
+    </form>
+    <p id="form-error"></p>
+    <a class="b-slate-link" href="/login">去登录</a>
+  </main>
+</Layout>
+
+<script>
+const errorMessageElement = document.getElementById('form-error')!
+document.forms[0].addEventListener('submit', async(e) => {
+  e.preventDefault()
+  errorMessageElement.innerText = ''
+  const formElement = e.target as HTMLFormElement
+  const response = await fetch(formElement.action, {
+    method: formElement.method,
+    body: new FormData(formElement),
+  })
+  if (response.ok) window.location.href = '/'
+  else errorMessageElement.innerText = (await response.json()).error
+})
+</script>
+
+<style>
+  @keyframes shake {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(0.5rem);
+    }
+    75% {
+      transform: translateX(-0.5rem);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .invalid {
+    animation: shake 0.2s ease-in-out 0s 2;
+  }
+  .mt-2 button,
+  [type="button"],
+  [type="reset"],
+  [type="submit"] {
+    background-color: rgba(148, 163, 184, var(--un-bg-opacity));
+    --un-bg-opacity: 0.2;
+  }
+  .gpt-password-btn {
+    width: 100%;
+    height: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+</style>
